@@ -1,6 +1,8 @@
 import argparse
 import re
 import time
+from tqdm import tqdm
+import time
 
 from tools.ZhipuTool import ZhipuTool
 
@@ -29,30 +31,27 @@ def escape_special_chars(text):
 
 def read_cfg_file(input_file_path,output_file_path):
     # 匹配 #开头 中间有=号的行
-    re_compile = re.compile("#.*=.*")
+    word = re.compile("#.*=.*")
+    # 注释的正则
+    annotation = re.compile("//.*")
 
     with open(output_file_path, "w", encoding="utf-8") as output:
         init_output_file(output)
         with open(input_file_path, "r") as f:
             lines = f.readlines()
-            sum_lines = len(lines)
+            pbar = tqdm(total=len(lines))
             for index, line in enumerate(lines):
-                print(f"processing {index}/{sum_lines}")
+                pbar.update(1)
+
                 # 如果是注释行
-                if line.startswith("//"):
+                if annotation.findall(line):
+                    # print("annotation ", line)
                     output.writelines(line)
-                    continue
-
-                # 如果是空行
-                if line == '\n':
+                elif line == '\n':
                     output.writelines(line)
-                    continue
-
-                # 正则表达式匹配
-                match = re_compile.findall(line)
-                if match:
+                elif word.findall(line):
                     # 匹配到的行
-                    print("read line ", line)
+                    # print("text line ", line)
                     # =分割字符串
                     split = line.split("=")
                     # 翻译
@@ -62,10 +61,11 @@ def read_cfg_file(input_file_path,output_file_path):
                         respond = split[1]
                     # 替换
                     line = line.replace(split[1], respond)
-                    print("output line ", line)
+                    # print("output line ", line)
                     # 写入文件
                     output.writelines(line)
                     output.write("\n")
+
         close_output_file(output)
 
 
