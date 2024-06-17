@@ -23,6 +23,14 @@ python main.py -platform zhipu -token xxx -input ./input.cfg -output ./output.cf
 
 翻译平台的token
 
+**input**
+
+输入文件路径
+
+**output**
+
+输出文件路径
+
 # 已经实现
 
 - [x] 支持翻译cfg格式 mod的文本
