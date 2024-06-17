@@ -20,7 +20,7 @@ def close_output_file(output):
 
 
 def escape_special_chars(text):
-    special_chars = ['\n', '\t', '\r', '\b', '\f', '\v', '\\', '\"', '\'']
+    special_chars = ['\n', '\t', '\r', '\b', '\f', '\v']
     for char in special_chars:
         if char in text:
             text = text.replace(char, '\\' + char.strip('\\'))
@@ -35,7 +35,19 @@ def read_cfg_file(input_file_path,output_file_path):
         init_output_file(output)
         with open(input_file_path, "r") as f:
             lines = f.readlines()
-            for line in lines:
+            sum_lines = len(lines)
+            for index, line in enumerate(lines):
+                print(f"processing {index}/{sum_lines}")
+                # 如果是注释行
+                if line.startswith("//"):
+                    output.writelines(line)
+                    continue
+
+                # 如果是空行
+                if line == '\n':
+                    output.writelines(line)
+                    continue
+
                 # 正则表达式匹配
                 match = re_compile.findall(line)
                 if match:
@@ -62,9 +74,9 @@ if __name__ == "__main__":
     # 识别命令行参数 -p -
     parser = argparse.ArgumentParser()
     parser.add_argument('-token', type=str, help='token parameter')
-    parser.add_argument('-platform', type=str, help='platform parameter')
-    parser.add_argument('-output', type=str, help='output parameter')
-    parser.add_argument('-input', type=str, help='input parameter')
+    parser.add_argument('-platform', type=str, help='platform parameter',default="zhipu")
+    parser.add_argument('-output', type=str, help='output parameter',default= "./zh-cn.cfg")
+    parser.add_argument('-input', type=str, help='input parameter',default= "./en-us.cfg")
 
     args = parser.parse_args()
 

@@ -12,6 +12,8 @@ pip install -r requirements.txt
 python main.py -platform zhipu -token xxx -input ./input.cfg -output ./output.cfg
 ```
 
+校对文本
+
 ## 参数说明
 
 **platform**

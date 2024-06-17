@@ -1,7 +1,7 @@
 import string
 
-from TranslationTools import TranslationTools
 from zhipuai import ZhipuAI
+from tools.TranslationTools import TranslationTools
 
 
 class ZhipuTool(TranslationTools):
