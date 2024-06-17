@@ -1,5 +1,9 @@
 # 坎巴拉太空计划模组自动翻译器
 
+这是一个用于自动翻译坎巴拉太空计划模组cfg文件的工具，如果没有手工翻译，机翻凑合着看吧，总比没有强。
+
+[汉化指南](https://github.com/tinygrox/KSP_Mod_Localization_Guide)
+
 # 使用方法
 
 1. 安装依赖
