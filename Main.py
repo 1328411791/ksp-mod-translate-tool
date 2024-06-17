@@ -10,7 +10,7 @@ global translationTools
 def init_output_file(output):
     output.writelines("Localization\n")
     output.writelines("{\n")
-    output.write("\t zh-ch\n")
+    output.write("\t zh-cn\n")
     output.writelines("\t{\n")
 
 
