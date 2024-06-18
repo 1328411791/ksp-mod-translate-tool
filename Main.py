@@ -4,6 +4,7 @@ import time
 from tqdm import tqdm
 import time
 
+from tools.Youdao import Youdao
 from tools.ZhipuTool import ZhipuTool
 
 global translationTools
@@ -74,6 +75,8 @@ if __name__ == "__main__":
     # 识别命令行参数 -p -
     parser = argparse.ArgumentParser()
     parser.add_argument('-token', type=str, help='token parameter')
+    parser.add_argument('-app_secret', type=str, help='platform parameter')
+    parser.add_argument('-app_key', type=str, help='platform parameter')
     parser.add_argument('-platform', type=str, help='platform parameter',default="zhipu")
     parser.add_argument('-output', type=str, help='output parameter',default= "./zh-cn.cfg")
     parser.add_argument('-input', type=str, help='input parameter',default= "./en-us.cfg")
@@ -84,6 +87,8 @@ if __name__ == "__main__":
     translation_way = args.platform
     output = args.output
     input = args.input
+    app_key = args.app_key
+    app_secret = args.app_secret
 
     print("translation_way:", translation_way)
     print("token:", token)
@@ -92,6 +97,8 @@ if __name__ == "__main__":
 
     if translation_way == "zhipu":
         translationTools = ZhipuTool(token)
+    elif translation_way == "youdao":
+        translationTools = Youdao(app_key=app_key, app_secret=app_secret)
 
     # wait for 5 seconds
     print("选择完成，等待5秒后开始翻译...")

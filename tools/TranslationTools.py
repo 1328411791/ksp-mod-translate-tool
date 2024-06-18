@@ -4,4 +4,4 @@ class TranslationTools:
         pass
 
     def translate_word(self, text):
-        pass
+        raise NotImplementedError("translate_word method is not implemented")

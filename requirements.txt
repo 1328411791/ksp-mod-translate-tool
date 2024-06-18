@@ -1,1 +1,3 @@
-zhipuai
+zhipuai==2.1.0.20240521
+requests==2.32.3
+tqdm==4.62.3

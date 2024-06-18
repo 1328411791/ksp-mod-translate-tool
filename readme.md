@@ -24,6 +24,7 @@ python main.py -platform zhipu -token xxx -input ./input.cfg -output ./output.cf
 
 翻译平台目前支持
 - zhipu: 某国内翻译平台 https://open.bigmodel.cn/
+- youdao: 有道翻译 api有限制，不建议使用
 
 **token**
 
